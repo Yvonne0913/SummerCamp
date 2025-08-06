@@ -11,8 +11,8 @@ window_surface = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("神準點擊手")
 
 clock = pygame.time.Clock()
-
-
+font = pygame.font.SysFont("Arial", 40)
+score = 0
 blocks = []
 for i in range(5):
     while True:
@@ -36,6 +36,7 @@ while True:
             for block in blocks:
                 if block.collidepoint(mouse_pos):
                     blocks.remove(block)
+                    score = score + 1
 
                     while True:
                         new_block = pygame.Rect(random.randint(0, 400), random.randint(0, 400), 100, 100)
@@ -45,11 +46,10 @@ while True:
                         else:
                             blocks.append(new_block)
                             break
-    
-    
     for block in blocks:
         pygame.draw.rect(window_surface, Colors.RED, block)
-    
-    
+    text = font.render("score:" + str(score), True, Colors.RED)
+    window_surface.blit(text, (0, 0))
+
     pygame.display.update()
     clock.tick(60)
