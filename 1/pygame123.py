@@ -11,12 +11,19 @@ window_surface = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("神準點擊手")
 
 clock = pygame.time.Clock()
-font = pygame.font.SysFont("Arial", 40)
+
 
 blocks = []
 for i in range(5):
-    new_block = pygame.Rect((random.randint(0, 400), random.randint(0, 400), 100, 100))
-    blocks.append(new_block)
+    while True:
+        new_block = pygame.Rect(random.randint(0, 400), random.randint(0, 400), 100, 100)
+        for block in blocks:
+            if new_block.colliderect(block):  
+                break
+        else:
+            blocks.append(new_block)
+            break
+
 while True:
     window_surface.fill(Colors.WHITE)
 
@@ -34,11 +41,15 @@ while True:
                         new_block = pygame.Rect(random.randint(0, 400), random.randint(0, 400), 100, 100)
                         for block in blocks:
                             if new_block.colliderect(block):
-                   # block = pygame.Rect((random.randint(0, 400),random.randint(0, 400), 100, 100))        
-      
-            
-            
-    #pygame.draw.rect(window_surface, Colors.RED, block)
-
+                                break
+                        else:
+                            blocks.append(new_block)
+                            break
+    
+    
+    for block in blocks:
+        pygame.draw.rect(window_surface, Colors.RED, block)
+    
+    
     pygame.display.update()
     clock.tick(60)
