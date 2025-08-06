@@ -1,3 +1,4 @@
-first = [1, 2, 3]
-first.extend([4, 5, 6])
-print(first)
+n = [10, 11, 12, 13, 14]
+
+for i in range(2, len(n)):
+    print(n[i])

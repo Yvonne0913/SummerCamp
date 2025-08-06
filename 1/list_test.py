@@ -1,10 +1,9 @@
-numbers = []
-numbers.insert(0, "A")
-numbers.insert(1, "B")
-numbers.insert(2, "C")
-numbers. pop(1)
-print(numbers)
-
-numbers = [1, 2, 3, 4, 5]
-numbers.insert()
-numbers.append(6)
+numbers = [12, 5, 8, 3, 6, 7, 1]
+ 
+for n in numbers:
+    if n == 7:
+        print("Wow! found the super lucky number 7!")
+        break
+else:
+    print("Too bad, the super lucky number 7 wasn't found.")
+    
