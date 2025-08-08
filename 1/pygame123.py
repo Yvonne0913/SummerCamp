@@ -10,10 +10,10 @@ window_surface = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("神準點擊手")
 background = pygame.Rect(0, 0, 1000, 1000)
 clock = pygame.time.Clock()
+time = 5
 font = pygame.font.SysFont("Arial", 40)
 score = 0
 blocks = []
-time = 60
 life = 10
 for i in range(5):
     while True:
@@ -26,7 +26,7 @@ for i in range(5):
             break
 
 while True:
-    time -= (1 / 60)
+    time = time - 1/60
     window_surface.fill(Colors.LIGHTBLUE)
 
     for event in pygame.event.get():
@@ -56,13 +56,26 @@ while True:
     text = font.render("score:" + str(score), True, Colors.WHITE)
     window_surface.blit(text, (0, 0))
     texttime = font.render("time:" + str(int(time)), True, Colors.WHITE)
-    window_surface.blit(texttime, (0, 30))
+    window_surface.blit(texttime, (0, 50))
     textlife = font.render("life:" + str(int(life)), True, Colors.WHITE)
-    window_surface.blit(textlife, (0, 60))
+    window_surface.blit(textlife, (0, 100))
 
-  
+    if life == 0:
+        window_surface.fill(Colors.LIGHTBLUE)
+        text = font.render("DEAD", True, Colors.RED)
+        window_surface.blit(text, (300, 300))
+        pygame.display.update()
+        pygame.time.delay(5000)
+        pygame.quit()
+        sys.exit()
+    if int(time) == 0:
+        window_surface.fill(Colors.LIGHTBLUE)
+        text = font.render("END", True, Colors.RED)
+        window_surface.blit(text, (300, 300))
+        pygame.display.update()
+        pygame.time.delay(5000)
+        pygame.quit()
+        sys.exit()
     
-
-
     pygame.display.update()
     clock.tick(60)
