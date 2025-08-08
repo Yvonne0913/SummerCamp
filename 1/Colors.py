@@ -10,4 +10,5 @@ class Colors:
     DARK_GRAY = (80, 80, 80)
     DIMGRAY = (64, 64, 64)
     LIGHT_GRAY = (200, 200, 200)
-    
+    LIGHTBLUE = (132, 197, 255)
+    YELLOW = (255, 252, 166)
